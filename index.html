@@ -559,7 +559,8 @@
           <select id="r-project">
             <option value="">— Select project —</option>
             <option value="CTR">CTR — Connectivity and Rural Transport</option>
-            <option value="WASH">WASH</option>
+            <option value="CLCR">CLCR</option>
+            <option value="PRIA">PRIA</option>
             <option value="Other">Other / Cross-cutting</option>
           </select>
         </div>
@@ -570,10 +571,6 @@
         <div>
           <label class="field-label" for="r-unit">Unit / Directorate</label>
           <input type="text" id="r-unit" placeholder="e.g. Infrastructure">
-        </div>
-        <div>
-          <label class="field-label" for="r-yrs-mca">Years with MCA-Moz II</label>
-          <input type="number" id="r-yrs-mca" min="0" max="20" placeholder="0">
         </div>
         <div>
           <label class="field-label" for="r-yrs-donor">Years in donor-funded infrastructure</label>
@@ -754,7 +751,7 @@
 <script>
 // ── Configuration ──────────────────────────────────────────────────
 // Replace this URL with your Google Apps Script Web App deployment URL
-const APPS_SCRIPT_URL = "YOUR_APPS_SCRIPT_URL_HERE";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyrCZUH26PFqTrc-JA88XhR999YTAOmeneZoN5aHnfzk3dq048MJmE9lFxAun09_w37YA/exec";
 
 // ── Survey data ────────────────────────────────────────────────────
 const A1_ITEMS = [
@@ -1091,7 +1088,6 @@ function collectAnswers() {
     project: document.getElementById("r-project").value,
     role: document.getElementById("r-role").value,
     unit: document.getElementById("r-unit").value,
-    years_mca: document.getElementById("r-yrs-mca").value,
     years_donor: document.getElementById("r-yrs-donor").value,
   };
   // Likert
