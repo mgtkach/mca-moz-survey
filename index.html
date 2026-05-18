@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Staff PM Capacity Survey — MCA-Mozambique II</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:   #1a3a5c;
+    --blue:   #2563a8;
+    --mid:    #3d7ec4;
+    --light:  #e8f0f9;
+    --accent: #e07b2e;
+    --text:   #1e2a35;
+    --muted:  #5a6a78;
+    --border: #c8d8e8;
+    --bg:     #f4f7fb;
+    --white:  #ffffff;
+    --success:#1e7e4e;
+    --radius: 6px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--navy);
+    color: #fff;
+    padding: 0;
+  }
+  .header-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 28px 24px 24px;
+  }
+  .header-kicker {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #8ab4d8;
+    margin-bottom: 8px;
+  }
+  .header-title {
+    font-family: 'Source Serif 4', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .header-sub {
+    font-size: 13px;
+    color: #8ab4d8;
+  }
+  .draft-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+
+  /* ── Progress bar ── */
+  .progress-wrap {
+    background: var(--navy);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 12px 0 0;
+  }
+  .progress-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .progress-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #8ab4d8;
+    margin-bottom: 6px;
+  }
+  .progress-bar-bg {
+    height: 3px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 2px;
+  }
+  .progress-bar-fill {
+    height: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+  .section-tabs {
+    display: flex;
+    gap: 0;
+    margin-top: 10px;
+  }
+  .section-tab {
+    font-size: 12px;
+    padding: 8px 14px 10px;
+    color: #8ab4d8;
+    border-bottom: 2px solid transparent;
+    cursor: default;
+    white-space: nowrap;
+  }
+  .section-tab.active {
+    color: #fff;
+    border-bottom-color: var(--accent);
+  }
+  .section-tab.done {
+    color: #5a9ec8;
+  }
+
+  /* ── Main layout ── */
+  .main {
+    max-width: 860px;
+    margin: 32px auto 60px;
+    padding: 0 24px;
+  }
+
+  /* ── Section panels ── */
+  .survey-section { display: none; }
+  .survey-section.active { display: block; }
+
+  .section-header {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section-number {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 4px;
+  }
+  .section-title {
+    font-family: 'Source Serif 4', serif;
+    font-size: 21px;
+    font-weight: 600;
+    color: var(--navy);
+  }
+  .section-desc {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+  .card-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--navy);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── Respondent fields ── */
+  .field-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .field-grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 600px) {
+    .field-grid, .field-grid-3 { grid-template-columns: 1fr; }
+  }
+  label.field-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 5px;
+  }
+  input[type="text"], input[type="number"], select, textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 9px 12px;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--white);
+    transition: border-color 0.15s;
+    -webkit-appearance: none;
+  }
+  input[type="text"]:focus,
+  input[type="number"]:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--mid);
+    box-shadow: 0 0 0 3px rgba(61,126,196,0.12);
+  }
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%235a6a78' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+    cursor: pointer;
+  }
+  textarea { resize: vertical; min-height: 80px; }
+
+  /* ── Likert matrix ── */
+  .likert-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .likert-table thead th {
+    padding: 8px 6px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  .likert-table thead th.col-label {
+    text-align: left;
+    width: 52%;
+  }
+  .likert-table tbody tr {
+    border-bottom: 1px solid #eef2f7;
+    transition: background 0.1s;
+  }
+  .likert-table tbody tr:last-child { border-bottom: none; }
+  .likert-table tbody tr:hover { background: #f8fafd; }
+  .likert-table tbody td {
+    padding: 10px 6px;
+    vertical-align: middle;
+  }
+  .likert-table tbody td.item-label {
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.4;
+    padding-right: 16px;
+  }
+  .likert-table tbody td.radio-cell {
+    text-align: center;
+  }
+  .likert-table input[type="radio"] {
+    width: 17px;
+    height: 17px;
+    accent-color: var(--blue);
+    cursor: pointer;
+  }
+
+  /* ── Scale legend ── */
+  .scale-legend {
+    display: flex;
+    gap: 0;
+    margin-bottom: 12px;
+    font-size: 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .scale-legend span {
+    flex: 1;
+    text-align: center;
+    padding: 6px 4px;
+    border-right: 1px solid var(--border);
+    line-height: 1.3;
+  }
+  .scale-legend span:last-child { border-right: none; }
+  .scale-legend span strong {
+    display: block;
+    font-size: 15px;
+    color: var(--navy);
+  }
+  .scale-legend span.s1 { background: #fdf0e8; }
+  .scale-legend span.s2 { background: #fef6ee; }
+  .scale-legend span.s3 { background: #f8f9fb; }
+  .scale-legend span.s4 { background: #eef4fb; }
+  .scale-legend span.s5 { background: #e5eff8; }
+
+  /* ── Multiple choice questions ── */
+  .question-block {
+    margin-bottom: 20px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .question-block:last-of-type { margin-bottom: 0; }
+  .question-label {
+    background: var(--light);
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    border-bottom: 1px solid var(--border);
+    line-height: 1.4;
+  }
+  .question-num {
+    display: inline-block;
+    background: var(--navy);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-right: 8px;
+  }
+  .choices-wrap { padding: 8px 0; }
+  .choice-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background 0.1s;
+  }
+  .choice-option:hover { background: #f4f8fd; }
+  .choice-option input[type="radio"] {
+    margin-top: 2px;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--blue);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .choice-option span {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .open-answer {
+    padding: 12px 16px;
+  }
+  .open-answer .hint {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 6px;
+  }
+
+  /* ── Note box ── */
+  .note-box {
+    background: #fffbf0;
+    border: 1px solid #f0d080;
+    border-left: 3px solid #e0a020;
+    border-radius: var(--radius);
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #5a4010;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  /* ── CTR badge ── */
+  .ctr-only-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  /* ── Navigation ── */
+  .nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 22px;
+    border-radius: var(--radius);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.15s, transform 0.1s;
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn-primary {
+    background: var(--blue);
+    color: #fff;
+  }
+  .btn-primary:hover { opacity: 0.88; }
+  .btn-secondary {
+    background: var(--white);
+    color: var(--navy);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover { background: var(--light); }
+  .btn-submit {
+    background: var(--success);
+    color: #fff;
+  }
+  .btn-submit:hover { opacity: 0.88; }
+  .btn:disabled {
+    opacity: 0.4;
+    cursor: default;
+    transform: none;
+  }
+
+  /* ── Success screen ── */
+  .success-screen {
+    display: none;
+    text-align: center;
+    padding: 60px 24px;
+  }
+  .success-screen.show { display: block; }
+  .success-icon {
+    width: 64px;
+    height: 64px;
+    background: var(--success);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+  }
+  .success-icon svg { width: 30px; height: 30px; }
+  .success-title {
+    font-family: 'Source Serif 4', serif;
+    font-size: 24px;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+  .success-msg {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 460px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* ── Error ── */
+  .error-msg {
+    display: none;
+    background: #fef0f0;
+    border: 1px solid #f0c0c0;
+    border-radius: var(--radius);
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #a03030;
+    margin-top: 12px;
+  }
+  .error-msg.show { display: block; }
+
+  /* ── Submitting spinner ── */
+  .spinner {
+    display: inline-block;
+    width: 14px; height: 14px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    vertical-align: middle;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── Validation highlight ── */
+  .required-alert {
+    display: none;
+    color: #c0392b;
+    font-size: 13px;
+    margin-top: 16px;
+  }
+  .required-alert.show { display: block; }
+
+  @media (max-width: 540px) {
+    .section-tabs { overflow-x: auto; }
+    .likert-table thead th:not(.col-label) { font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-kicker">ipm4dev.org &nbsp;|&nbsp; MCA-Mozambique II</div>
+    <div class="header-title">Staff Project Management Capacity Survey <span class="draft-badge">Draft</span></div>
+    <div class="header-sub">Anonymous &nbsp;·&nbsp; Estimated time: 20–25 minutes</div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-inner">
+      <div class="progress-labels">
+        <span id="prog-label">Section 1 of 6</span>
+        <span id="prog-pct">0%</span>
+      </div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="prog-bar"></div></div>
+      <div class="section-tabs" id="section-tabs"></div>
+    </div>
+  </div>
+</header>
+
+<main class="main" id="main-form">
+
+  <!-- ═══════════════════════════════════════
+       SECTION 0 — Respondent Info
+  ════════════════════════════════════════ -->
+  <div class="survey-section active" id="sec-0">
+    <div class="section-header">
+      <div class="section-number">Introduction</div>
+      <div class="section-title">About you <span style="font-size:14px;color:var(--muted);font-family:'Source Sans 3',sans-serif;font-weight:400;">(optional)</span></div>
+      <div class="section-desc">All fields are optional. Responses help sort results by project and role. The survey is anonymous unless you choose to identify yourself.</div>
+    </div>
+    <div class="card">
+      <div class="field-grid">
+        <div>
+          <label class="field-label" for="r-name">Name</label>
+          <input type="text" id="r-name" placeholder="Your name">
+        </div>
+        <div>
+          <label class="field-label" for="r-project">Project</label>
+          <select id="r-project">
+            <option value="">— Select project —</option>
+            <option value="CTR">CTR — Connectivity and Rural Transport</option>
+            <option value="WASH">WASH</option>
+            <option value="Other">Other / Cross-cutting</option>
+          </select>
+        </div>
+        <div>
+          <label class="field-label" for="r-role">Role / Title</label>
+          <input type="text" id="r-role" placeholder="e.g. Project Manager">
+        </div>
+        <div>
+          <label class="field-label" for="r-unit">Unit / Directorate</label>
+          <input type="text" id="r-unit" placeholder="e.g. Infrastructure">
+        </div>
+        <div>
+          <label class="field-label" for="r-yrs-mca">Years with MCA-Moz II</label>
+          <input type="number" id="r-yrs-mca" min="0" max="20" placeholder="0">
+        </div>
+        <div>
+          <label class="field-label" for="r-yrs-donor">Years in donor-funded infrastructure</label>
+          <input type="number" id="r-yrs-donor" min="0" max="40" placeholder="0">
+        </div>
+      </div>
+    </div>
+    <div class="nav-bar">
+      <span></span>
+      <button class="btn btn-primary" onclick="goTo(1)">Begin survey &rarr;</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SECTION 1 — A1 PM Fundamentals
+  ════════════════════════════════════════ -->
+  <div class="survey-section" id="sec-1">
+    <div class="section-header">
+      <div class="section-number">Section A1</div>
+      <div class="section-title">Project Management Fundamentals</div>
+      <div class="section-desc">Rate your current proficiency for each area. Be honest — this is a diagnostic, not a test.</div>
+    </div>
+    <div class="card">
+      <div class="scale-legend">
+        <span class="s1"><strong>1</strong>None</span>
+        <span class="s2"><strong>2</strong>Basic</span>
+        <span class="s3"><strong>3</strong>Moderate</span>
+        <span class="s4"><strong>4</strong>Proficient</span>
+        <span class="s5"><strong>5</strong>Expert</span>
+      </div>
+      <table class="likert-table" id="a1-table">
+        <thead>
+          <tr>
+            <th class="col-label">Competency</th>
+            <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+          </tr>
+        </thead>
+        <tbody id="a1-body"></tbody>
+      </table>
+    </div>
+    <div class="nav-bar">
+      <button class="btn btn-secondary" onclick="goTo(0)">&larr; Back</button>
+      <button class="btn btn-primary" onclick="goTo(2)">Next &rarr;</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SECTION 2 — A2 Reporting + A3 Procurement
+  ════════════════════════════════════════ -->
+  <div class="survey-section" id="sec-2">
+    <div class="section-header">
+      <div class="section-number">Section A2 &amp; A3</div>
+      <div class="section-title">Reporting, Documentation &amp; Contract Administration</div>
+      <div class="section-desc">Rate your current proficiency for each area.</div>
+    </div>
+    <div class="card" style="margin-bottom:20px">
+      <div class="card-title">A2 — Reporting and Documentation</div>
+      <div class="scale-legend">
+        <span class="s1"><strong>1</strong>None</span>
+        <span class="s2"><strong>2</strong>Basic</span>
+        <span class="s3"><strong>3</strong>Moderate</span>
+        <span class="s4"><strong>4</strong>Proficient</span>
+        <span class="s5"><strong>5</strong>Expert</span>
+      </div>
+      <table class="likert-table">
+        <thead><tr><th class="col-label">Competency</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+        <tbody id="a2-body"></tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">A3 — Procurement and Contract Administration</div>
+      <div class="scale-legend">
+        <span class="s1"><strong>1</strong>None</span>
+        <span class="s2"><strong>2</strong>Basic</span>
+        <span class="s3"><strong>3</strong>Moderate</span>
+        <span class="s4"><strong>4</strong>Proficient</span>
+        <span class="s5"><strong>5</strong>Expert</span>
+      </div>
+      <table class="likert-table">
+        <thead><tr><th class="col-label">Competency</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+        <tbody id="a3-body"></tbody>
+      </table>
+    </div>
+    <div class="nav-bar">
+      <button class="btn btn-secondary" onclick="goTo(1)">&larr; Back</button>
+      <button class="btn btn-primary" onclick="goTo(3)">Next &rarr;</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SECTION 3 — A4 E&S + A5 Self-Assessment
+  ════════════════════════════════════════ -->
+  <div class="survey-section" id="sec-3">
+    <div class="section-header">
+      <div class="section-number">Section A4 &amp; A5</div>
+      <div class="section-title">E&amp;S Safeguards &amp; Self-Assessment</div>
+    </div>
+    <div class="card" style="margin-bottom:20px">
+      <div class="card-title">A4 — Environmental and Social Safeguards</div>
+      <div class="scale-legend">
+        <span class="s1"><strong>1</strong>None</span>
+        <span class="s2"><strong>2</strong>Basic</span>
+        <span class="s3"><strong>3</strong>Moderate</span>
+        <span class="s4"><strong>4</strong>Proficient</span>
+        <span class="s5"><strong>5</strong>Expert</span>
+      </div>
+      <table class="likert-table">
+        <thead><tr><th class="col-label">Competency</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+        <tbody id="a4-body"></tbody>
+      </table>
+    </div>
+    <div id="a5-questions"></div>
+    <div class="nav-bar">
+      <button class="btn btn-secondary" onclick="goTo(2)">&larr; Back</button>
+      <button class="btn btn-primary" id="btn-a5-next" onclick="nextAfterA5()">Next &rarr;</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SECTION 4 — Part B (CTR only)
+  ════════════════════════════════════════ -->
+  <div class="survey-section" id="sec-4">
+    <div class="section-header">
+      <div class="section-number">Section B <span class="ctr-only-badge">CTR Team Only</span></div>
+      <div class="section-title">PMC Contract — Role, Authority &amp; Obligations</div>
+      <div class="section-desc">This section evaluates understanding of the PMC's contracted role within MCA-Mozambique's CTR Project delivery structure. Choose the best answer for each question.</div>
+    </div>
+    <div class="note-box">
+      <strong>Context:</strong> The PMC (CDM Smith / CDM International) was contracted by MCA to provide project management, consultancy contract administration, and works contract oversight support. The PMC's authority derives from its contract with MCA and — where applicable — from the Employer's Engineer function under FIDIC contracts.<br><br>
+      <strong>Acronyms:</strong> PMC = Project Management Consultant &nbsp;|&nbsp; EE = Employer's Engineer &nbsp;|&nbsp; IPC = Interim Payment Certificate &nbsp;|&nbsp; PA = Procurement Agent &nbsp;|&nbsp; TOR = Terms of Reference
+    </div>
+    <div id="b-questions"></div>
+    <div class="nav-bar">
+      <button class="btn btn-secondary" onclick="goTo(3)">&larr; Back</button>
+      <button class="btn btn-primary" onclick="goTo(5)">Next &rarr;</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SECTION 5 — Review & Submit
+  ════════════════════════════════════════ -->
+  <div class="survey-section" id="sec-5">
+    <div class="section-header">
+      <div class="section-number">Final step</div>
+      <div class="section-title">Review &amp; Submit</div>
+      <div class="section-desc">Please review your responses before submitting. Once submitted your answers will be recorded in the project database.</div>
+    </div>
+    <div class="card">
+      <div style="font-size:14px;color:var(--muted);line-height:1.7;">
+        <p>Your responses are <strong style="color:var(--navy)">anonymous</strong> unless you provided your name on the first page.</p>
+        <br>
+        <p>By submitting you confirm that your responses reflect your honest self-assessment and that you understand the results will be used for internal capacity planning only.</p>
+        <br>
+        <p style="font-size:13px;font-style:italic;">If you need to return to a previous section, use the Back button below.</p>
+      </div>
+    </div>
+    <div class="required-alert" id="req-alert">⚠ Please complete all required questions before submitting.</div>
+    <div class="error-msg" id="submit-error">There was a problem submitting your responses. Please try again or contact the survey administrator.</div>
+    <div class="nav-bar">
+      <button class="btn btn-secondary" onclick="goBack5()">&larr; Back</button>
+      <button class="btn btn-submit" id="submit-btn" onclick="submitSurvey()">Submit responses</button>
+    </div>
+  </div>
+
+</main>
+
+<!-- Success screen -->
+<div class="success-screen" id="success-screen">
+  <div class="success-icon">
+    <svg viewBox="0 0 30 30" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="5,15 12,22 25,8"/>
+    </svg>
+  </div>
+  <div class="success-title">Thank you — responses submitted</div>
+  <div class="success-msg">Your survey has been recorded. Results will be reviewed by the program team and used to inform capacity planning for MCA-Mozambique II.</div>
+</div>
+
+<script>
+// ── Configuration ──────────────────────────────────────────────────
+// Replace this URL with your Google Apps Script Web App deployment URL
+const APPS_SCRIPT_URL = "YOUR_APPS_SCRIPT_URL_HERE";
+
+// ── Survey data ────────────────────────────────────────────────────
+const A1_ITEMS = [
+  "Developing and managing project schedules (Gantt / programme of works)",
+  "Work breakdown structure (WBS) and scope definition",
+  "Cost planning, budget tracking, and financial forecasting",
+  "Risk identification, registration, and mitigation management",
+  "Change management and variation control processes",
+  "Earned value analysis (EVM) — schedule and cost performance indices",
+  "Stakeholder identification, mapping, and engagement planning",
+  "Issue escalation and decision log management"
+];
+
+const A2_ITEMS = [
+  "Preparing progress reports for donor / MCC compliance",
+  "Document management and version control (e.g., SharePoint)",
+  "Meeting management: agenda, minutes, action tracking",
+  "Deliverable review and approval workflow management",
+  "Use of project dashboards or management information systems"
+];
+
+const A3_ITEMS = [
+  "MCC procurement rules and procedures",
+  "Preparation and review of Terms of Reference (TOR) for consultancies",
+  "Evaluation of technical and financial proposals",
+  "Contract administration: correspondence, notices, instructions",
+  "Processing and review of consultant payment requests",
+  "Understanding of FIDIC Red Book (works construction contracts)",
+  "Understanding of FIDIC Yellow Book (design-and-build contracts)",
+  "Claims awareness: entitlement, notification, and substantiation"
+];
+
+const A4_ITEMS = [
+  "MCC E&S performance standards and compliance requirements",
+  "ESIA / ESMP review and oversight",
+  "Resettlement planning (RAP) and PAP engagement",
+  "Environmental and social monitoring during construction",
+  "Gender integration and social inclusion in project delivery"
+];
+
+const A5_QUESTIONS = [
+  {
+    id: "a5q1", type: "mc", num: "Q1",
+    text: "How would you describe your overall readiness to manage complex infrastructure contracts?",
+    choices: [
+      "Fully confident — I can manage independently",
+      "Mostly confident — I manage with occasional support",
+      "Partially confident — I need regular guidance on specific areas",
+      "Limited confidence — I require significant support across most areas"
+    ]
+  },
+  {
+    id: "a5q2", type: "open", num: "Q2",
+    text: "What aspect of your current role do you find most technically challenging?",
+    hint: "Be specific — e.g., FIDIC payment process, MCC reporting, RAP coordination"
+  },
+  {
+    id: "a5q3", type: "open", num: "Q3",
+    text: "What training or capacity support would most improve your effectiveness over the next 6 months?",
+    hint: "e.g., FIDIC contract administration, MS Project, procurement procedures, E&S oversight"
+  },
+  {
+    id: "a5q4", type: "mc", num: "Q4",
+    text: "How clearly do you understand the division of responsibilities between MCA, MCC, the PA, and any project management or oversight consultants on your project?",
+    choices: [
+      "Very clear — I can explain each party's role without difficulty",
+      "Mostly clear — minor gaps in my understanding",
+      "Partially clear — I am uncertain about several roles",
+      "Unclear — roles and responsibilities are confusing to me"
+    ]
+  },
+  {
+    id: "a5q5", type: "open", num: "Q5",
+    text: "When you have a contract-related question (e.g., about a payment, a deliverable, or a contract clause), what do you typically do?",
+    hint: "Describe your normal process — who do you consult and how?"
+  }
+];
+
+const B_QUESTIONS = [
+  {
+    id: "bq6", type: "mc", num: "Q6", section: "B1 — The PMC's Core Role",
+    text: "Which of the following best describes the PMC's primary function on the CTR Project?",
+    choices: [
+      "a)  To make final financial and procurement decisions on behalf of MCA",
+      "b)  To provide professional oversight, administration, and coordination support to MCA across the CTR consultancy and works contracts",
+      "c)  To report directly to MCC on behalf of MCA-Mozambique",
+      "d)  To act as the main representative of the Government of Mozambique in contract negotiations"
+    ]
+  },
+  {
+    id: "bq7", type: "mc", num: "Q7", section: null,
+    text: "The PMC administers consultancy contracts on behalf of MCA. In this role, the PMC:",
+    choices: [
+      "a)  Has authority to approve contract variations and extensions independently",
+      "b)  Reviews consultant deliverables, facilitates MCA's review process, and advises on contract management — but final approvals rest with MCA",
+      "c)  Replaces MCA's role in all day-to-day interactions with consultants",
+      "d)  Is responsible for procuring new consultants without involving the PA"
+    ]
+  },
+  {
+    id: "bq8", type: "open", num: "Q8", section: null,
+    text: "In your own words, describe what the PMC can decide or instruct without first seeking MCA approval, versus what requires MCA sign-off.",
+    hint: "Think about specific examples from your own work with the PMC"
+  },
+  {
+    id: "bq9", type: "mc", num: "Q9", section: "B2 — FIDIC Employer's Engineer (EE) Function",
+    note: "The Licungo Bridge / Mocuba Bypass Design-and-Build contract will use FIDIC Yellow Book conditions. The JV-CPG/TNM consultancy will support MCA as Employer's Engineer.",
+    text: "Under FIDIC, the Employer's Engineer certifies an Interim Payment Certificate (IPC). Once certified, MCA's obligation is to:",
+    choices: [
+      "a)  Review and approve or reject the IPC within 28 days before any payment obligation arises",
+      "b)  Pay the certified amount within 56 days of the IPC — this is a contractual obligation, not a discretionary approval",
+      "c)  Return the IPC to the EE for further validation before payment processing",
+      "d)  Obtain MCC no-objection before releasing any payment under a FIDIC contract"
+    ]
+  },
+  {
+    id: "bq10", type: "mc", num: "Q10", section: null,
+    text: "If MCA identifies a suspected error in a certified FIDIC IPC, the correct contractual response is to:",
+    choices: [
+      "a)  Withhold payment until the dispute is resolved",
+      "b)  Reject the IPC and instruct the EE to re-certify",
+      "c)  Pay the certified amount and address the correction through the next IPC — errors are corrected prospectively, not by withholding payment",
+      "d)  Immediately terminate the contract pending investigation"
+    ]
+  },
+  {
+    id: "bq11", type: "mc", num: "Q11", section: null,
+    text: "Who holds the FIDIC Employer's Engineer role under the Licungo Bridge / Mocuba Bypass Design-and-Build contract?",
+    choices: [
+      "a)  CDM Smith (the PMC)",
+      "b)  ANE (Administração Nacional de Estradas)",
+      "c)  JV-CPG/TNM — the Consultancy Services for Procurement Support, Design Review, and Construction Monitoring",
+      "d)  MCC's Country Director"
+    ]
+  },
+  {
+    id: "bq12", type: "open", num: "Q12", section: null,
+    text: "What do you understand to be the difference between a consultancy contract payment and a FIDIC works contract payment? Why does the distinction matter for MCA's obligations?",
+    hint: "Describe in plain language — no need to cite clause numbers"
+  },
+  {
+    id: "bq13", type: "mc", num: "Q13", section: "B3 — Governance, Escalation, and Decision Authority",
+    text: "A consultant submits a deliverable to the PMC. The PMC reviews it and finds it satisfactory. What happens next?",
+    choices: [
+      "a)  The PMC approves the deliverable — no further MCA action is required",
+      "b)  The PMC transmits the deliverable to MCA with its recommendation; MCA makes the formal approval",
+      "c)  The PMC sends the deliverable directly to MCC for review",
+      "d)  The PA approves the deliverable as the contracting authority"
+    ]
+  },
+  {
+    id: "bq14", type: "mc", num: "Q14", section: null,
+    text: "A FIDIC contractor issues a claim notice under Clause 20. Who is responsible for managing the claim process?",
+    choices: [
+      "a)  MCA-Mozambique's legal team, independently of the EE",
+      "b)  The PMC, acting as MCA's contract management support, in coordination with the EE",
+      "c)  MCC, as the primary funder",
+      "d)  The PA, as the procurement authority"
+    ]
+  },
+  {
+    id: "bq15", type: "mc", num: "Q15", section: null,
+    text: "If the PMC and a consultant are in disagreement about the scope of a deliverable, and MCA staff are asked to resolve the matter, MCA's role is to:",
+    choices: [
+      "a)  Defer entirely to the PMC's judgement as the appointed consultant",
+      "b)  Review the contract TOR and related correspondence, take a considered position, and issue a formal direction",
+      "c)  Escalate immediately to MCC for resolution",
+      "d)  Allow the dispute to resolve itself without intervention"
+    ]
+  },
+  {
+    id: "bq16", type: "open", num: "Q16", section: null,
+    text: "Describe a situation (real or hypothetical) where MCA staff might unintentionally undermine the PMC's effectiveness. What would be the consequence, and how would you prevent it?",
+    hint: "Think about instructions given directly to consultants, payment decisions, or approval processes"
+  },
+  {
+    id: "bq17", type: "mc", num: "Q17", section: "B4 — Practical Awareness",
+    text: "The PMC's TOR requires it to maintain the CTR Project SharePoint site and deliverable trackers. MCA staff should:",
+    choices: [
+      "a)  Maintain their own parallel file systems to avoid reliance on the PMC",
+      "b)  Use the SharePoint site as the primary document management system and provide the PMC with access to relevant incoming correspondence",
+      "c)  Restrict PMC access to sensitive project documents",
+      "d)  Archive PMC outputs outside SharePoint for MCA's own records"
+    ]
+  },
+  {
+    id: "bq18", type: "mc", num: "Q18", section: null,
+    text: "The PMC's quarterly progress report (QPR) is a key governance document. MCA staff should:",
+    choices: [
+      "a)  Accept it as an accurate record without further review",
+      "b)  Review it against their own knowledge of progress, flag inaccuracies, and provide formal comments before the report is finalised",
+      "c)  Forward it directly to MCC without internal review",
+      "d)  Treat it as a confidential PMC document not for MCA circulation"
+    ]
+  },
+  {
+    id: "bq19", type: "open", num: "Q19", section: null,
+    text: "What is one thing you wish you understood better about how the PMC contract works, or about what the PMC is supposed to do on the CTR Project?",
+    hint: "There are no wrong answers here — this is a genuine gap assessment"
+  },
+  {
+    id: "bq20", type: "mc", num: "Q20", section: null,
+    text: "Overall, how would you rate MCA-Mozambique's current institutional understanding of the PMC's contracted role and authority?",
+    choices: [
+      "a)  Strong — most staff understand it well",
+      "b)  Moderate — some staff understand it, others do not",
+      "c)  Weak — there is widespread confusion about the PMC's role",
+      "d)  Unknown to me"
+    ]
+  }
+];
+
+// ── State ──────────────────────────────────────────────────────────
+let currentSection = 0;
+let isCTR = false;
+
+const SECTION_LABELS = ["Info", "A1", "A2–A3", "A4–A5", "Part B", "Submit"];
+const TOTAL_SECTIONS = 6; // 0-5, but section 4 conditional
+
+// ── Build Likert tables ────────────────────────────────────────────
+function buildLikertTable(tbodyId, items, prefix) {
+  const tbody = document.getElementById(tbodyId);
+  items.forEach((item, i) => {
+    const tr = document.createElement("tr");
+    let cells = `<td class="item-label">${item}</td>`;
+    for (let v = 1; v <= 5; v++) {
+      cells += `<td class="radio-cell"><input type="radio" name="${prefix}_${i}" value="${v}" aria-label="${item} — ${v}"></td>`;
+    }
+    tr.innerHTML = cells;
+    tbody.appendChild(tr);
+  });
+}
+
+function buildQuestions(containerId, questions) {
+  const container = document.getElementById(containerId);
+  let lastSection = null;
+  questions.forEach(q => {
+    if (q.section && q.section !== lastSection) {
+      const sh = document.createElement("h3");
+      sh.style.cssText = "font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--navy);margin:24px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--border);";
+      sh.textContent = q.section;
+      container.appendChild(sh);
+      lastSection = q.section;
+    }
+    if (q.note) {
+      const nb = document.createElement("div");
+      nb.className = "note-box";
+      nb.style.marginBottom = "12px";
+      nb.innerHTML = `<strong>Note:</strong> ${q.note}`;
+      container.appendChild(nb);
+    }
+    const block = document.createElement("div");
+    block.className = "question-block";
+    const label = document.createElement("div");
+    label.className = "question-label";
+    label.innerHTML = `<span class="question-num">${q.num}</span>${q.text}`;
+    block.appendChild(label);
+    if (q.type === "mc") {
+      const wrap = document.createElement("div");
+      wrap.className = "choices-wrap";
+      q.choices.forEach((c, ci) => {
+        const opt = document.createElement("label");
+        opt.className = "choice-option";
+        opt.innerHTML = `<input type="radio" name="${q.id}" value="${ci}"><span>${c}</span>`;
+        wrap.appendChild(opt);
+      });
+      block.appendChild(wrap);
+    } else {
+      const oa = document.createElement("div");
+      oa.className = "open-answer";
+      if (q.hint) oa.innerHTML = `<div class="hint">${q.hint}</div>`;
+      const ta = document.createElement("textarea");
+      ta.id = `ta_${q.id}`;
+      ta.rows = 3;
+      oa.appendChild(ta);
+      block.appendChild(oa);
+    }
+    container.appendChild(block);
+  });
+}
+
+// ── Section navigation ─────────────────────────────────────────────
+function updateProgress() {
+  const project = document.getElementById("r-project").value;
+  isCTR = (project === "CTR");
+  // Show/hide Part B tab
+  const tabs = document.getElementById("section-tabs");
+  const tabEls = tabs.querySelectorAll(".section-tab");
+  tabEls.forEach((t, i) => {
+    t.classList.toggle("active", i === currentSection);
+    t.classList.toggle("done", i < currentSection);
+    if (i === 4) t.style.display = isCTR ? "" : "none";
+  });
+  const visibleSections = isCTR ? TOTAL_SECTIONS : TOTAL_SECTIONS - 1;
+  const adjCurrent = (!isCTR && currentSection >= 4) ? currentSection - 1 : currentSection;
+  const pct = Math.round((adjCurrent / (visibleSections - 1)) * 100);
+  document.getElementById("prog-bar").style.width = pct + "%";
+  document.getElementById("prog-pct").textContent = pct + "%";
+  document.getElementById("prog-label").textContent = `Section ${adjCurrent + 1} of ${visibleSections}`;
+}
+
+function goTo(n) {
+  // Skip Part B if not CTR
+  if (n === 4 && !isCTR) { goTo(5); return; }
+  document.querySelectorAll(".survey-section").forEach(s => s.classList.remove("active"));
+  document.getElementById(`sec-${n}`).classList.add("active");
+  currentSection = n;
+  updateProgress();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function nextAfterA5() {
+  isCTR = (document.getElementById("r-project").value === "CTR");
+  if (isCTR) { goTo(4); } else { goTo(5); }
+}
+
+function goBack5() {
+  isCTR = (document.getElementById("r-project").value === "CTR");
+  if (isCTR) { goTo(4); } else { goTo(3); }
+}
+
+// ── Collect all answers ────────────────────────────────────────────
+function collectLikert(prefix, items) {
+  return items.map((_, i) => {
+    const sel = document.querySelector(`input[name="${prefix}_${i}"]:checked`);
+    return sel ? sel.value : "";
+  });
+}
+
+function collectAnswers() {
+  const data = {
+    timestamp: new Date().toISOString(),
+    name: document.getElementById("r-name").value,
+    project: document.getElementById("r-project").value,
+    role: document.getElementById("r-role").value,
+    unit: document.getElementById("r-unit").value,
+    years_mca: document.getElementById("r-yrs-mca").value,
+    years_donor: document.getElementById("r-yrs-donor").value,
+  };
+  // Likert
+  ["a1","a2","a3","a4"].forEach((sec, si) => {
+    const items = [A1_ITEMS, A2_ITEMS, A3_ITEMS, A4_ITEMS][si];
+    collectLikert(sec, items).forEach((v, i) => {
+      data[`${sec}_${i+1}`] = v;
+    });
+  });
+  // A5
+  A5_QUESTIONS.forEach(q => {
+    if (q.type === "mc") {
+      const sel = document.querySelector(`input[name="${q.id}"]:checked`);
+      data[q.id] = sel ? q.choices[sel.value] : "";
+    } else {
+      data[q.id] = document.getElementById(`ta_${q.id}`).value;
+    }
+  });
+  // Part B (CTR only)
+  if (isCTR) {
+    B_QUESTIONS.forEach(q => {
+      if (q.type === "mc") {
+        const sel = document.querySelector(`input[name="${q.id}"]:checked`);
+        data[q.id] = sel ? q.choices[sel.value] : "";
+      } else {
+        data[q.id] = document.getElementById(`ta_${q.id}`).value;
+      }
+    });
+  }
+  return data;
+}
+
+// ── Submit ─────────────────────────────────────────────────────────
+async function submitSurvey() {
+  const btn = document.getElementById("submit-btn");
+  const errEl = document.getElementById("submit-error");
+  errEl.classList.remove("show");
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Submitting…';
+
+  const data = collectAnswers();
+
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+    document.getElementById("main-form").style.display = "none";
+    document.querySelector(".site-header").style.display = "none";
+    document.getElementById("success-screen").classList.add("show");
+  } catch (e) {
+    btn.disabled = false;
+    btn.innerHTML = "Submit responses";
+    errEl.classList.add("show");
+  }
+}
+
+// ── Init ───────────────────────────────────────────────────────────
+function init() {
+  buildLikertTable("a1-body", A1_ITEMS, "a1");
+  buildLikertTable("a2-body", A2_ITEMS, "a2");
+  buildLikertTable("a3-body", A3_ITEMS, "a3");
+  buildLikertTable("a4-body", A4_ITEMS, "a4");
+  buildQuestions("a5-questions", A5_QUESTIONS);
+  buildQuestions("b-questions", B_QUESTIONS);
+
+  // Build tabs
+  const tabs = document.getElementById("section-tabs");
+  SECTION_LABELS.forEach((label, i) => {
+    const t = document.createElement("div");
+    t.className = "section-tab" + (i === 0 ? " active" : "");
+    t.textContent = label;
+    if (i === 4) t.style.display = "none";
+    tabs.appendChild(t);
+  });
+
+  // Re-check project selection to show/hide Part B
+  document.getElementById("r-project").addEventListener("change", updateProgress);
+  updateProgress();
+}
+
+init();
+</script>
+</body>
+</html>
