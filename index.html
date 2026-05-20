@@ -252,6 +252,7 @@
     </div>
     <div class="card">
       <div class="card-title">A3 — Procurement and Contract Administration</div>
+      <div style="font-size:12px;color:var(--muted);font-style:italic;margin-bottom:10px;">Items marked <em>optional if not infrastructure</em> may be skipped if your role does not involve infrastructure contract delivery.</div>
       <div class="scale-legend"><span class="s1"><strong>1</strong>None</span><span class="s2"><strong>2</strong>Basic</span><span class="s3"><strong>3</strong>Moderate</span><span class="s4"><strong>4</strong>Proficient</span><span class="s5"><strong>5</strong>Expert</span></div>
       <table class="likert-table"><thead><tr><th class="col-label">Competency</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead><tbody id="a3-body"></tbody></table>
     </div>
@@ -269,6 +270,7 @@
     </div>
     <div class="card" style="margin-bottom:20px">
       <div class="card-title">A4 — Environmental and Social Performance (ESP) Safeguards</div>
+      <div style="font-size:12px;color:var(--muted);font-style:italic;margin-bottom:10px;">The final item is optional if your role does not involve direct infrastructure delivery.</div>
       <div class="scale-legend"><span class="s1"><strong>1</strong>None</span><span class="s2"><strong>2</strong>Basic</span><span class="s3"><strong>3</strong>Moderate</span><span class="s4"><strong>4</strong>Proficient</span><span class="s5"><strong>5</strong>Expert</span></div>
       <table class="likert-table"><thead><tr><th class="col-label">Competency</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead><tbody id="a4-body"></tbody></table>
     </div>
@@ -369,19 +371,19 @@ const A3_ITEMS = [
   "Evaluation of technical and financial proposals",
   "Contract administration: correspondence, notices, instructions",
   "Processing and review of consultant payment requests",
-  "Understanding of FIDIC Red Book (works construction contracts)",
-  "Understanding of FIDIC Yellow Book (design-and-build contracts)",
-  "Claims awareness: entitlement, notification, and substantiation"
+  "Understanding of FIDIC Red Book (works construction contracts) — optional if not infrastructure",
+  "Understanding of FIDIC Yellow Book (design-and-build contracts) — optional if not infrastructure",
+  "Claims awareness: entitlement, notification, and substantiation — optional if not infrastructure"
 ];
 const A4_ITEMS = [
   "MCC ESP performance standards and compliance requirements",
   "ESIA / ESMP review and oversight",
   "Resettlement planning (RAP) and PAP engagement",
-  "Environmental and social monitoring during construction"
+  "Environmental and social monitoring during construction — optional if not infrastructure"
 ];
 const A5_QUESTIONS = [
   { id:"a5q1", type:"mc", num:"Q1", text:"How would you describe your overall readiness to manage complex infrastructure contracts?",
-    choices:["Fully confident — I can manage independently","Mostly confident — I manage with occasional support","Partially confident — I need regular guidance on specific areas","Limited confidence — I require significant support across most areas"] },
+    choices:["Fully confident — I can manage independently","Mostly confident — I manage with occasional support","Partially confident — I need regular guidance on specific areas","Limited confidence — I require significant support across most areas","Not applicable — I do not work on infrastructure projects"] },
   { id:"a5q2", type:"open", num:"Q2", text:"What aspect of your current role do you find most technically challenging?", hint:"Be specific — e.g., FIDIC payment process, MCC reporting, RAP coordination" },
   { id:"a5q3", type:"open", num:"Q3", text:"What training or capacity support would most improve your effectiveness over the next 6 months?", hint:"e.g., FIDIC contract administration, MS Project, procurement procedures, ESP oversight" },
   { id:"a5q4", type:"mc", num:"Q4", text:"How clearly do you understand the division of responsibilities between MCA, MCC, the PA, and any project management or oversight consultants on your project?",
@@ -393,7 +395,7 @@ const A5_QUESTIONS = [
 const C_QUESTIONS = [
   // C1a — open purpose
   { id:"c1a", type:"open", num:"C1", section:"C1 — Job Purpose",
-    text:"In one or two sentences, describe the primary purpose of your role on this project.",
+    text:"In one or two sentences, describe the primary purpose of your role at MCA.",
     hint:"What are you here to achieve?" },
   // C1b — role archetype
   { id:"c1b", type:"mc", num:"C1b",
