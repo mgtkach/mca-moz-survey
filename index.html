@@ -19,7 +19,6 @@
   .header-kicker{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#8ab4d8;margin-bottom:8px;}
   .header-title{font-family:'Source Serif 4',serif;font-size:26px;font-weight:600;color:#fff;line-height:1.3;margin-bottom:6px;}
   .header-sub{font-size:13px;color:#8ab4d8;}
-  .draft-badge{display:inline-block;background:var(--accent);color:#fff;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:3px;margin-left:10px;vertical-align:middle;}
 
   .progress-wrap{background:var(--navy);border-top:1px solid rgba(255,255,255,.1);padding:12px 0 0;}
   .progress-inner{max-width:860px;margin:0 auto;padding:0 24px;}
@@ -131,8 +130,8 @@
 <header class="site-header">
   <div class="header-inner">
     <div class="header-kicker">ipm4dev.org &nbsp;|&nbsp; MCA-Mozambique II</div>
-    <div class="header-title">Staff Capacity &amp; Alignment Survey
-    <div class="header-sub">Anonymous &nbsp;·&nbsp; Estimated time: 12–15 minutes</div>
+    <div class="header-title">Staff Capacity &amp; Alignment Survey</div>
+    <div class="header-sub">Estimated time: 12–15 minutes</div>
   </div>
   <div class="progress-wrap">
     <div class="progress-inner">
@@ -150,7 +149,7 @@
     <div class="section-header">
       <div class="section-number">Introduction</div>
       <div class="section-title">About you</div>
-      <div class="section-desc">Project and Role / Title are required. All other fields are optional. Responses are anonymous unless you provide your name.</div>
+      <div class="section-desc">Project and Role / Title are required. All other fields are optional.</div>
     </div>
     <div class="card">
       <div class="field-grid">
@@ -269,7 +268,7 @@
     </div>
     <div class="card">
       <div style="font-size:14px;color:var(--muted);line-height:1.7;">
-        <p>Your responses are <strong style="color:var(--navy)">anonymous</strong> unless you provided your name on the first page.</p><br>
+        <p>Your responses will be used for internal capacity planning purposes only.</p><br>
         <p>By submitting you confirm that your responses reflect your honest self-assessment and that results will be used for internal capacity planning only.</p>
       </div>
     </div>
@@ -322,8 +321,7 @@ const C_QUESTIONS = [
       "I coordinate — I connect people, information, and processes to keep things moving",
       "I oversee — I monitor, review, and ensure quality and compliance",
       "I advise — I provide technical guidance and recommendations to decision-makers",
-      "I decide — I make or formally approve key project decisions",
-      "A mix of the above"
+      "I decide — I make or formally approve key project decisions"
     ]},
   { id:"c2", type:"rank", num:"C2", section:"C2 — Responsibilities",
     text:"Drag to rank your top 3 primary responsibilities — most important at the top.",
@@ -340,17 +338,7 @@ const C_QUESTIONS = [
       "Risk identification and management",
       "Relationship management with MCC / donors"
     ]},
-  { id:"c3a", type:"mc", num:"C3a", section:"C3 — Accountability",
-    text:"Within MCA, who are you primarily accountable to for the results of your work?",
-    choices:[
-      "My direct line manager within MCA",
-      "My Project Director",
-      "My Sector Director",
-      "CEO of MCA",
-      "The PMC",
-      "I am not clear on who I am primarily accountable to"
-    ]},
-  { id:"c3b", type:"rank", num:"C3b",
+  { id:"c3b", type:"rank", num:"C3", section:"C3 — Accountability",
     text:"In your view, who or what is MCA ultimately accountable to? Drag to rank in order of priority — most important at the top.",
     hint:"Drag and drop to reorder.",
     items:[
@@ -374,6 +362,23 @@ const C_QUESTIONS = [
       "Institutional capacity and team development",
       "Resolving contract disputes or claims",
       "Budget management and financial forecasting"
+    ]},
+  { id:"c6a", type:"mc", num:"C5", section:"C5 — Management & Decision-Making",
+    text:"When you need to make a decision in your day-to-day work, what typically happens?",
+    choices:[
+      "I make it myself within my understood authority",
+      "I check with my manager before deciding most things",
+      "I escalate most decisions upward — I am not clear what I can decide alone",
+      "Decisions in my area are often made by someone above me without my input"
+    ]},
+  { id:"c6b", type:"mc", num:"C6",
+    text:"When you assign work to someone on your team or a colleague, how do you typically do it?",
+    choices:[
+      "I assign it with a clear brief, expected output, and deadline — and follow up at agreed points",
+      "I assign it but do not always specify the output or deadline clearly",
+      "I tend to stay closely involved rather than hand it off",
+      "I rarely assign work — I handle most things myself",
+      "Not applicable — I do not manage or assign work to others"
     ]},
 ];
 
